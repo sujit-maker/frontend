@@ -50,7 +50,7 @@ const AdminDashboard = () => {
     }, [users]);
 
     const fetchUsers = () => {
-        axios.get('172.105.38.194/api/users')
+        axios.get('http://localhost:3000/api/users')
             .then((response) => {
                 // Filter out admin users from the response
                 const filteredUsers = response.data.filter(user => user.usertype !== 'Admin');
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
     };
 
     const handleDeleteConfirm = () => {
-        axios.delete(`172.105.38.194/api/users/${selectedUser.id}`)
+        axios.delete(`http://localhost:3000/api/users/${selectedUser.id}`)
             .then(() => {
                 fetchUsers();
                 setOpenDeleteDialog(false);
@@ -99,7 +99,7 @@ const AdminDashboard = () => {
             updatedUser.password = selectedUser.password;
         }
 
-        axios.put(`172.105.38.194/api/users/${selectedUser.id}`, updatedUser)
+        axios.put(`http://localhost:3000/api/users/${selectedUser.id}`, updatedUser)
             .then(() => {
                 fetchUsers();
                 setOpenEditDialog(false);
@@ -138,7 +138,7 @@ const AdminDashboard = () => {
             return;
         }
 
-        axios.post('172.105.38.194/api/users', newUser)
+        axios.post('http://localhost:3000/api/users', newUser)
             .then(() => {
                 fetchUsers();
                 setOpenAddDialog(false);
